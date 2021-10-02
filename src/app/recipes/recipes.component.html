@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-5">
+    <!-- Data passsed using Input Output -->
+    <!-- <app-recipe-list (recipeDetail)="getRecipe($event)"></app-recipe-list> -->
+
+    <!-- Data passed using Services -->
+
+    <app-recipe-list></app-recipe-list>
+  </div>
+  <div class="col-md-7">
+    <app-recipe-detail
+      *ngIf="selectedRecipeDetails; else infoText"
+      [recipe]="selectedRecipeDetails"
+    ></app-recipe-detail>
+    <ng-template #infoText>Please select a Recipe</ng-template>
+  </div>
+</div>
