@@ -6,17 +6,17 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  @Output() recipeFlag: EventEmitter<boolean> = new EventEmitter<boolean>();
+  // @Output() recipeFlag: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   collapsed = true;
   constructor() {}
 
   ngOnInit(): void {
-    this.recipeFlag.emit(true);
+    // this.recipeFlag.emit(true);
   }
 
-  showRecipes(flag: boolean) {
-    console.log(flag);
-    this.recipeFlag.emit(flag);
-  }
+  // showRecipes(flag: boolean) {
+  //   console.log(flag);
+  //   this.recipeFlag.emit(flag);
+  // }
 }
