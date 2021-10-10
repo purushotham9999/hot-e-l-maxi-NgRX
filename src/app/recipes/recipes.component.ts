@@ -10,8 +10,7 @@ import { Recipe } from './recipe';
 export class RecipesComponent implements OnInit {
   // recipeDetail: Recipe = { name: '', description: '', imagePath: '' };
   // selectedRecipeDetails!: Recipe;
-  constructor() // private recipeService: RecipeService
-  {}
+  constructor() {} // private recipeService: RecipeService
 
   ngOnInit(): void {
     // this.recipeService.recipeSelected.subscribe((recipe: Recipe) => {

@@ -5,6 +5,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  OnDestroy,
   OnInit,
   Output,
   ViewChild,
@@ -16,7 +17,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.scss'],
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
   // @ViewChild('inputName') inputNameREf!: ElementRef;
   // @ViewChild('inputAmount') inputAmountREf!: ElementRef;
   // @Output() newIngredient = new EventEmitter<Ingredient>();
@@ -79,5 +80,9 @@ export class ShoppingEditComponent implements OnInit {
   onDelete() {
     this.onClear();
     this.shoppingListService.deleteIngredient(this.editedItemIndex);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
