@@ -12,6 +12,7 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, OnChanges {
+  title = 'hot-e-l-Maxi';
   // @Input() showRecipes: boolean;
 
   // constructor(){ this.showRecipes = true; }

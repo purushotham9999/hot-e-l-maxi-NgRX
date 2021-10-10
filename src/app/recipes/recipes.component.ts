@@ -9,13 +9,14 @@ import { Recipe } from './recipe';
 })
 export class RecipesComponent implements OnInit {
   // recipeDetail: Recipe = { name: '', description: '', imagePath: '' };
-  selectedRecipeDetails!: Recipe;
-  constructor(private recipeService: RecipeService) {}
+  // selectedRecipeDetails!: Recipe;
+  constructor() // private recipeService: RecipeService
+  {}
 
   ngOnInit(): void {
-    this.recipeService.recipeSelected.subscribe((recipe: Recipe) => {
-      this.selectedRecipeDetails = recipe;
-    });
+    // this.recipeService.recipeSelected.subscribe((recipe: Recipe) => {
+    //   this.selectedRecipeDetails = recipe;
+    // });
   }
 
   // Data passsed using Input Output
