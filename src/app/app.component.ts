@@ -1,3 +1,4 @@
+import { AuthService } from './auth/auth.service';
 import {
   Component,
   Input,
@@ -16,9 +17,10 @@ export class AppComponent implements OnInit, OnChanges {
   // @Input() showRecipes: boolean;
 
   // constructor(){ this.showRecipes = true; }
-  constructor() {}
+  constructor(private authService: AuthService) {}
   ngOnInit(): void {
     // console.log('app ' + this.showRecipes);
+    this.authService.autoLogin();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
