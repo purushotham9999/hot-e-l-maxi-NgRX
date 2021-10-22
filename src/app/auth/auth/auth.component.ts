@@ -1,7 +1,15 @@
-import { Observable } from 'rxjs';
+import { AlertComponent } from './../../shared/alert/alert.component';
+import { PlaceholderDirective } from './../../shared/placeholder/placeholder.directive';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from './../auth.service';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { SignUpResponse } from '../sign-up-response';
 import { Router } from '@angular/router';
 
@@ -10,11 +18,19 @@ import { Router } from '@angular/router';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent implements OnInit, OnDestroy {
   isLoginMode = true;
   isLoading = false;
   error!: string;
-  constructor(private authService: AuthService, private router: Router) {}
+
+  @ViewChild(PlaceholderDirective) alertHost!: PlaceholderDirective;
+  closeSubscribe!: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private componentFactoryResolver: ComponentFactoryResolver
+  ) {}
 
   ngOnInit(): void {}
 
@@ -54,8 +70,32 @@ export class AuthComponent implements OnInit {
         this.error = errorMsg;
         // 'An error ouccured ' + errorResp.error.error.errors[0].message;
         console.log(errorMsg);
+        this.showAlertComponentDynamically(errorMsg);
       }
     );
     authForm.reset();
+  }
+  onHandleError() {
+    this.error = '';
+  }
+
+  private showAlertComponentDynamically(errMsg: string) {
+    const alertCmpFactory =
+      this.componentFactoryResolver.resolveComponentFactory(AlertComponent);
+
+    const hostViewContainerRef = this.alertHost.viewContainerRef;
+    hostViewContainerRef.clear();
+
+    const componentRef = hostViewContainerRef.createComponent(alertCmpFactory);
+    componentRef.instance.message = errMsg;
+    this.closeSubscribe = componentRef.instance.close.subscribe(() => {
+      this.closeSubscribe.unsubscribe();
+      hostViewContainerRef.clear();
+    });
+  }
+  ngOnDestroy(): void {
+    if (this.closeSubscribe) {
+      this.closeSubscribe.unsubscribe();
+    }
   }
 }
