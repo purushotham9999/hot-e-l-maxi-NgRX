@@ -1,3 +1,8 @@
+import { AuthModule } from './auth/auth.module';
+import { CoreModule } from './core.module';
+import { SharedModule } from './shared/shared.module';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
+import { RecipesModule } from './recipes/recipes.module';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { NgModule } from '@angular/core';
@@ -24,30 +29,31 @@ import { PlaceholderDirective } from './shared/placeholder/placeholder.directive
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
-    DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
-    AuthComponent,
-    LoadingSpinnerComponent,
-    AlertComponent,
-    PlaceholderDirective,
+    //Moved to auht module
+    // AuthComponent,
+    //moved to shared module
+    // DropdownDirective,
+    // LoadingSpinnerComponent,
+    // AlertComponent,
+    // PlaceholderDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    //moved to auth module
+    // FormsModule,
+    //moved to needed modules
+    // ReactiveFormsModule,
     HttpClientModule,
+    RecipesModule,
+    ShoppingListModule,
+    SharedModule,
+    CoreModule,
+    AuthModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-  ],
+  // providers: [
+  //   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  // ],
   bootstrap: [AppComponent],
   //not mandatory for angular version above 9 (used to create a component programtically)
   // entryComponents: [AlertComponent],

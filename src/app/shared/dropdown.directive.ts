@@ -17,6 +17,7 @@ export class DropdownDirective {
 
   @HostListener('click') openMenu() {
     this.isOpenClass = !this.isOpenClass;
+    console.log('DropdownDirective open = ' + this.isOpenClass);
   }
 
   // @HostListener('document:click', ['$event']) openMenu() {
