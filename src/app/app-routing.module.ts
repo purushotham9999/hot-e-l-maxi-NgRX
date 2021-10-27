@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 // import { AuthComponent } from './auth/auth/auth.component';
 // import { RecipesResolverService } from './recipes/recipes-resolver.service';
 // import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
@@ -28,6 +29,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./auth/auth.module').then((module) => module.AuthModule),
   },
+  {
+    path: 'not-found',
+    component: ErrorPageComponent,
+    data: { message: 'The requested page does not exist!!' },
+  },
+  { path: '**', redirectTo: '/not-found' },
 ];
 
 @NgModule({

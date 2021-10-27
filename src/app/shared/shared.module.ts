@@ -4,6 +4,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
 import { NgModule } from '@angular/core';
 import { AlertComponent } from './alert/alert.component';
 import { CommonModule } from '@angular/common';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { CommonModule } from '@angular/common';
     LoadingSpinnerComponent,
     PlaceholderDirective,
     DropdownDirective,
+    ErrorPageComponent,
   ],
   imports: [CommonModule],
   exports: [
