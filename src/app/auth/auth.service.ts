@@ -5,6 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,14 +14,17 @@ export class AuthService {
   userSubject = new BehaviorSubject<User>(new User('', '', '', new Date()));
   tokenExpirationTimer: any;
 
-  private authKey = 'AIzaSyAgzCSaPqJxf2N7jiuJGdHVuwHctkFQvL0';
+  //moved this constant  to environment folder
+  // private authKey = 'AIzaSyAgzCSaPqJxf2N7jiuJGdHVuwHctkFQvL0';
   private signUpEndpoint =
     'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' +
-    this.authKey;
+    environment.fireBaseApiAuthKey;
+  // this.authKey;
   private loginEndpoint =
     'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
-    this.authKey;
+    environment.fireBaseApiAuthKey;
 
+  // this.authKey;
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {

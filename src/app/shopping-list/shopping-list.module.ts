@@ -11,13 +11,12 @@ import { ShoppingListComponent } from './shopping-list.component';
   imports: [
     RouterModule.forChild([
       {
-        path: 'shopping-list',
+        path: '',
         component: ShoppingListComponent,
       },
     ]),
     CommonModule,
     ReactiveFormsModule,
-    RecipesRoutingModule,
     FormsModule,
   ],
   // exports: [ShoppingListComponent, ShoppingEditComponent],

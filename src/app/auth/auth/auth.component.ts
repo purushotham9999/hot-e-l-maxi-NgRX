@@ -43,7 +43,11 @@ export class AuthComponent implements OnInit, OnDestroy {
       return;
     }
     // console.log(authForm.value.email);
-    this.isLoading = !this.isLoading;
+    // console.error('loading ' + this.isLoading);
+
+    // this.isLoading = !this.isLoading;
+    // console.error('loading ' + this.isLoading);
+
     console.log(authForm);
     let authObs: Observable<SignUpResponse>;
     //get whole response object (instead onf only body) show appropriate message based on response code
@@ -61,7 +65,10 @@ export class AuthComponent implements OnInit, OnDestroy {
     }
     authObs.subscribe(
       (resposne) => {
+        // console.error('loading ' + this.isLo ading);
         this.isLoading = !this.isLoading;
+        // console.error('loading ' + this.isLoading);
+
         console.log(resposne);
         this.router.navigate(['/recipes']);
       },
@@ -71,9 +78,9 @@ export class AuthComponent implements OnInit, OnDestroy {
         // 'An error ouccured ' + errorResp.error.error.errors[0].message;
         console.log(errorMsg);
         this.showAlertComponentDynamically(errorMsg);
+        authForm.reset();
       }
     );
-    authForm.reset();
   }
   onHandleError() {
     this.error = '';
@@ -91,6 +98,7 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.closeSubscribe = componentRef.instance.close.subscribe(() => {
       this.closeSubscribe.unsubscribe();
       hostViewContainerRef.clear();
+      this.isLoading = !this.isLoading;
     });
   }
   ngOnDestroy(): void {
